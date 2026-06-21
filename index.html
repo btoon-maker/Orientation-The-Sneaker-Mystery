@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stories in Science · Orientation: The Sneaker Mystery</title>
+
+<!-- ============================================================
+     FONT — same as your other SINS lessons (Open Sans)
+     ============================================================ -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS — matched to your Eco-Responders lesson.
+   Change a color here and it updates everywhere.
+   ============================================================ */
+:root {
+  /* ---- NEW PALETTE ----
+     #149da1 teal  (primary)   |  #8349b7 purple (accent)
+     #eef9fa cyan tint surface |  #f6f1fb lavender tint surface  */
+  --green:       #149da1;   /* primary teal  */
+  --green-dark:  #0f7d80;   /* darker teal (hover/text) */
+  --green-light: #eef9fa;   /* soft cyan surface */
+  --blue:        #8349b7;   /* accent purple (discuss) */
+  --blue-light:  #f6f1fb;   /* soft lavender surface */
+  --yellow:      #8349b7;   /* accent purple (decision) */
+  --yellow-light:#f6f1fb;   /* soft lavender surface */
+  --orange:      #8349b7;   /* SINS badge (accent purple) */
+  --black:       #000000;
+  --white:       #FFFFFF;
+  --gray-50:  #f8f9fa;
+  --gray-100: #f0f2f4;
+  --gray-200: #e2e5e9;
+  --gray-300: #cdd2d8;
+  --gray-400: #9aa2ad;
+  --gray-600: #5a6270;
+  --gray-700: #3d4450;
+  --gray-800: #2a2f38;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  --radius:    12px;
+  --radius-lg: 18px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: var(--black);
+  background: linear-gradient(180deg, #eef9fa 0%, #f6f1fb 50%, #e9f6f7 100%);
+  line-height: 1.7;
+  font-size: 16px;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   FIXED HEADER BAR (SINS branding) + PROGRESS BAR
+   ============================================================ */
+.resume-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: var(--white); border-bottom: 1px solid var(--gray-200);
+  padding: 8px 16px; display: flex; align-items: center;
+  justify-content: space-between; gap: 12px; z-index: 100;
+  box-shadow: var(--shadow-sm); flex-wrap: wrap;
+}
+.resume-bar .brand { display: flex; align-items: center; gap: 10px; }
+.resume-bar .sins-badge {
+  background: var(--orange); color: #fff; font-weight: 900; font-size: 0.75rem;
+  border-radius: 50%; width: 36px; height: 36px; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: 0.5px;
+}
+.resume-bar .brand-text { display: flex; flex-direction: column; }
+.brand-series { font-size: 0.65rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--gray-400); }
+.brand-title  { font-weight: 800; color: var(--green-dark); font-size: 0.9rem; }
+.resume-bar .btn { padding: 6px 14px; font-size: 0.8rem; border-radius: 8px; }
+
+.progress-wrap { height: 4px; background: var(--gray-200); position: fixed;
+  top: 48px; left: 0; right: 0; z-index: 99; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--yellow));
+  transition: width 0.4s ease; border-radius: 0 2px 2px 0; }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.lesson-container { max-width: 860px; margin: 0 auto; padding: 74px 16px 60px; }
+
+/* Each "page" is a .section. Only the .active one shows. */
+.section { display: none; animation: fadeSlideIn 0.5s ease forwards; }
+.section.active { display: block; }
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card { background: var(--white); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md); padding: 32px 28px; margin-bottom: 24px;
+  border: 1px solid var(--gray-200); }
+.card--hero {
+  background: linear-gradient(135deg, #0f7d80 0%, #149da1 40%, #1bb6bb 100%);
+  color: var(--white); text-align: center; padding: 56px 36px; border: none;
+  position: relative; overflow: hidden;
+}
+.card--hero::before { content: ''; position: absolute; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 70%, rgba(131,73,183,0.20) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%);
+  pointer-events: none; }
+.card--hero h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 800; position: relative; }
+.card--hero p  { font-size: 1.1rem; margin-top: 12px; position: relative; opacity: 0.95; }
+
+.card--narrative { border-left: 4px solid var(--green); }
+.card--decision  { border-left: 4px solid var(--yellow);
+  background: linear-gradient(135deg, #f6f1fb 0%, var(--white) 100%); }
+.card--discuss   { border-left: 4px solid var(--blue);
+  background: linear-gradient(135deg, #f6f1fb 0%, var(--white) 100%); }
+.card--connection{ border-left: 4px solid var(--green); }
+
+/* ============================================================
+   TYPOGRAPHY HELPERS
+   ============================================================ */
+.title-section { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700;
+  color: var(--green-dark); margin-bottom: 16px; }
+.narrative-text { font-size: 1.1rem; margin-bottom: 14px; color: var(--gray-800); }
+.dialogue { font-style: italic; color: var(--gray-700); padding-left: 16px;
+  border-left: 3px solid var(--green-light); margin: 14px 0; font-size: 1.08rem; }
+.reminder-line { font-size: 1rem; color: var(--gray-600); font-weight: 600;
+  background: var(--green-light); border-radius: var(--radius);
+  padding: 10px 16px; margin-bottom: 20px; display: inline-block; }
+
+.lesson-image { display: block; width: 100%; max-width: 100%; height: auto;
+  border-radius: var(--radius); margin: 16px 0; box-shadow: var(--shadow-sm); object-fit: cover; }
+/* Friendly placeholder shown if an image file is missing */
+.img-missing { background: var(--gray-50); border: 2px dashed var(--gray-300);
+  border-radius: var(--radius); padding: 22px; text-align: center; color: var(--gray-600);
+  font-size: 0.9rem; margin: 16px 0; }
+.img-missing code { color: var(--green-dark); font-weight: 700; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: inherit; font-weight: 700; font-size: 1rem; cursor: pointer;
+  border: none; border-radius: var(--radius); padding: 14px 26px;
+  transition: all 0.2s ease; }
+.btn--primary { background: var(--green); color: var(--white);
+  box-shadow: 0 4px 14px rgba(20,157,161,0.35); }
+.btn--primary:hover { background: var(--green-dark); box-shadow: 0 6px 20px rgba(20,157,161,0.4); }
+.btn--start { font-size: 1.15rem; padding: 16px 36px; }
+.btn--back { background: transparent; color: var(--gray-600);
+  border: 1px solid var(--gray-300); padding: 10px 20px; font-size: 0.9rem; font-weight: 600; }
+.btn--back:hover { background: var(--gray-100); }
+
+/* Big decision-path buttons (Page 1) — sized for projection */
+.btn--decision { background: var(--white); color: var(--gray-800);
+  border: 2px solid var(--yellow); padding: 22px 26px; width: 100%;
+  text-align: left; border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  font-size: 1.15rem; display: flex; justify-content: space-between; align-items: center; }
+.btn--decision:hover { border-color: var(--green); background: var(--green-light);
+  box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.btn--decision .arrow { color: var(--green); font-weight: 800; }
+
+.btn-row { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.btn-row--between { justify-content: space-between; }
+
+.decision-question { font-size: 1.3rem; font-weight: 700; color: var(--gray-800);
+  margin-bottom: 20px; }
+.decision-label { display: inline-block; background: var(--yellow);
+  color: var(--white); font-weight: 800; font-size: 0.85rem; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 12px; }
+
+/* ============================================================
+   CLICK-TO-REVEAL EVIDENCE CARDS
+   ============================================================ */
+.evidence-progress { display: flex; align-items: center; gap: 8px; margin-bottom: 18px;
+  font-size: 0.8rem; font-weight: 700; color: var(--gray-400);
+  text-transform: uppercase; letter-spacing: 0.06em; }
+.evidence-dots { display: flex; gap: 6px; }
+.evidence-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gray-200);
+  transition: background 0.3s; }
+.evidence-dot.filled { background: var(--green); }
+
+.evidence-card { border: 2px solid var(--gray-200); border-radius: var(--radius);
+  margin-bottom: 14px; overflow: hidden; background: var(--white);
+  cursor: pointer; transition: all 0.2s ease; }
+.evidence-card:hover { border-color: var(--yellow); box-shadow: var(--shadow-sm); }
+.evidence-card.revealed { cursor: default; border-color: var(--green); }
+.evidence-head { display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 22px; }
+.evidence-head .ev-title { font-weight: 800; color: var(--gray-800); font-size: 1.15rem;
+  display: flex; align-items: center; gap: 10px; }
+.evidence-head .ev-hint { font-size: 0.85rem; font-weight: 700; color: var(--green-dark);
+  background: var(--green-light); padding: 5px 12px; border-radius: 20px; }
+.evidence-card.revealed .ev-hint { display: none; }
+.evidence-body { display: none; padding: 0 22px 20px; }
+.evidence-card.revealed .evidence-body { display: block; animation: fadeSlideIn 0.4s ease; }
+.evidence-body p { font-size: 1.05rem; color: var(--gray-700); }
+
+/* Highlighted teacher discussion prompt */
+.discuss-label { display: flex; align-items: center; gap: 8px; font-weight: 800;
+  color: var(--blue); margin-bottom: 8px; font-size: 1rem;
+  text-transform: uppercase; letter-spacing: 0.04em; }
+.discuss-prompt { font-size: 1.25rem; font-weight: 700; color: var(--gray-800); line-height: 1.5; }
+
+/* Continue button is hidden until all evidence is revealed */
+.continue-wrap { margin-top: 8px; }
+.continue-wrap.locked .btn--primary { opacity: 0.45; pointer-events: none; }
+.continue-hint { font-size: 0.85rem; color: var(--gray-400); font-weight: 600; margin-top: 8px; }
+
+/* ============================================================
+   CONNECTION PAGE (Page 4)
+   ============================================================ */
+.evidence-sources { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+.source-chip { background: var(--blue-light); color: var(--blue); font-weight: 700;
+  padding: 8px 16px; border-radius: 20px; font-size: 0.95rem; }
+.closing-banner { background: linear-gradient(135deg, var(--green) 0%, var(--blue) 100%);
+  color: var(--white); text-align: center; font-size: 1.3rem; font-weight: 800;
+  padding: 26px; border-radius: var(--radius-lg); margin-top: 24px; box-shadow: var(--shadow-md); }
+
+.teacher-note { font-size: 0.85rem; color: var(--gray-400); text-align: center;
+  margin-top: 28px; font-style: italic; }
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     HEADER  (edit the series + title text here)
+     ============================================================ -->
+<div class="resume-bar">
+  <div class="brand">
+    <div class="sins-badge">SINS</div>
+    <div class="brand-text">
+      <span class="brand-series">Stories in Science · Orientation</span>
+      <span class="brand-title">The Sneaker Mystery</span>
+    </div>
+  </div>
+  <!-- Restart lets the teacher re-run the orientation down the other evidence path -->
+  <button class="btn btn--back" onclick="goTo('section-1')" style="border-color:#c0392b;color:#c0392b;">↺ Start Over</button>
+</div>
+<div class="progress-wrap"><div class="progress-fill" id="progressBar"></div></div>
+
+<div class="lesson-container">
+
+<!-- ============================================================
+     PAGE 1 — NARRATIVE SETUP + DECISION POINT
+     ============================================================ -->
+<section class="section active" id="section-1">
+
+  <div class="card card--hero">
+    <h1>The Sneaker Mystery</h1>
+    <p>Before we make a guess, let's look for evidence — together.</p>
+  </div>
+
+  <div class="card card--narrative">
+    <p class="narrative-text">
+      A student notices <strong>Mrs. Brown</strong>, the PE teacher, and <strong>Ms. Allison</strong>,
+      the 4th grade teacher, comparing their sneakers in the hallway. They bought the same kind of
+      sneakers on the same day, but now the shoes look different. One pair looks much more worn than the other.
+    </p>
+
+    <!-- IMAGE: hallway opening. Swap file at images/opening_hallways.png -->
+    <img class="lesson-image" src="images/opening_hallways.png" alt="Two teachers comparing sneakers in the hallway"
+         onerror="showMissing(this,'images/opening_hallways.png')">
+
+    <p class="dialogue">Ms. Allison says, "Whoa… our shoes look really different."</p>
+    <p class="dialogue">Mrs. Brown says, "They really do."</p>
+
+    <p class="narrative-text">
+      The student brings the mystery back to class. Their teacher says:
+    </p>
+    <p class="dialogue">"Before we make a guess, let's look for evidence."</p>
+
+    <!-- IMAGE: classroom. Swap file at images/opening_classroom.png -->
+    <img class="lesson-image" src="images/opening_classroom.png" alt="Classroom where the mystery is discussed"
+         onerror="showMissing(this,'images/opening_classroom.png')">
+  </div>
+
+  <div class="card card--decision">
+    <p class="decision-question">What evidence should we prioritize first?</p>
+
+    <!-- These two buttons branch to Page 2 or Page 3 -->
+    <div class="btn-row" style="flex-direction:column;">
+      <button class="btn btn--decision" onclick="goTo('section-2')">
+        <span>Mrs. Brown's PE Teacher Evidence</span>
+        <span class="arrow">→</span>
+      </button>
+      <button class="btn btn--decision" onclick="goTo('section-3')">
+        <span>Ms. Allison's 4th Grade Teacher Evidence</span>
+        <span class="arrow">→</span>
+      </button>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ============================================================
+     PAGE 2 — DP #1a · MRS. BROWN EVIDENCE PATH
+     (Evidence may CHALLENGE an assumption)
+     ============================================================ -->
+<section class="section" id="section-2">
+
+  <div class="card card--narrative">
+    <h2 class="title-section">Evidence Path: Mrs. Brown</h2>
+    <span class="reminder-line">We chose to investigate Mrs. Brown's evidence first.</span>
+
+    <!-- Reveal-progress dots -->
+    <div class="evidence-progress">
+      <span>Evidence revealed</span>
+      <span class="evidence-dots">
+        <span class="evidence-dot" data-path="a"></span>
+        <span class="evidence-dot" data-path="a"></span>
+        <span class="evidence-dot" data-path="a"></span>
+      </span>
+    </div>
+
+    <!-- EVIDENCE 1 -->
+    <div class="evidence-card" onclick="revealEvidence(this,'a')">
+      <div class="evidence-head">
+        <span class="ev-title">🏃 PE Movement</span>
+        <span class="ev-hint">Tap to reveal</span>
+      </div>
+      <div class="evidence-body">
+        <img class="lesson-image" src="images/DP1a_evidence1.png" alt="PE movement evidence"
+             onerror="showMissing(this,'images/DP1a_evidence1.png')">
+        <p>Mrs. Brown demonstrates warm-ups and walks around the gym and playground.</p>
+      </div>
+    </div>
+
+    <!-- EVIDENCE 2 -->
+    <div class="evidence-card" onclick="revealEvidence(this,'a')">
+      <div class="evidence-head">
+        <span class="ev-title">🗣️ Teaching Routine</span>
+        <span class="ev-hint">Tap to reveal</span>
+      </div>
+      <div class="evidence-body">
+        <img class="lesson-image" src="images/DP1a_evidence2.png" alt="Teaching routine evidence"
+             onerror="showMissing(this,'images/DP1a_evidence2.png')">
+        <p>She sometimes stands and gives directions during class.</p>
+      </div>
+    </div>
+
+    <!-- EVIDENCE 3 -->
+    <div class="evidence-card" onclick="revealEvidence(this,'a')">
+      <div class="evidence-head">
+        <span class="ev-title">👟 Shoe Use</span>
+        <span class="ev-hint">Tap to reveal</span>
+      </div>
+      <div class="evidence-body">
+        <img class="lesson-image" src="images/DP1a_evidence3.png" alt="Shoe use evidence"
+             onerror="showMissing(this,'images/DP1a_evidence3.png')">
+        <p>She changes shoes after school. Her sneakers show some wear, but not extreme wear.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Highlighted teacher-led discussion prompt -->
+  <div class="card card--discuss">
+    <div class="discuss-label">💬 Discuss together</div>
+    <p class="discuss-prompt">Based on the evidence we reviewed, what helps explain Mrs. Brown's sneaker wear?</p>
+  </div>
+
+  <div class="btn-row btn-row--between">
+    <button class="btn btn--back" onclick="goTo('section-1')">← Back</button>
+    <div class="continue-wrap locked" data-path="a">
+      <button class="btn btn--primary" onclick="goTo('section-4')">Continue →</button>
+      <div class="continue-hint">Reveal all evidence to continue.</div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ============================================================
+     PAGE 3 — DP #1b · MS. ALLISON EVIDENCE PATH
+     (Evidence may SUPPORT an explanation)
+     ============================================================ -->
+<section class="section" id="section-3">
+
+  <div class="card card--narrative">
+    <h2 class="title-section">Evidence Path: Ms. Allison</h2>
+    <span class="reminder-line">We chose to investigate Ms. Allison's evidence first.</span>
+
+    <div class="evidence-progress">
+      <span>Evidence revealed</span>
+      <span class="evidence-dots">
+        <span class="evidence-dot" data-path="b"></span>
+        <span class="evidence-dot" data-path="b"></span>
+        <span class="evidence-dot" data-path="b"></span>
+      </span>
+    </div>
+
+    <!-- EVIDENCE 1 -->
+    <div class="evidence-card" onclick="revealEvidence(this,'b')">
+      <div class="evidence-head">
+        <span class="ev-title">🚶 School Movement</span>
+        <span class="ev-hint">Tap to reveal</span>
+      </div>
+      <div class="evidence-body">
+        <img class="lesson-image" src="images/DP1b_evidence1.png" alt="School movement evidence"
+             onerror="showMissing(this,'images/DP1b_evidence1.png')">
+        <p>Ms. Allison walks around the classroom and during transitions and duty.</p>
+      </div>
+    </div>
+
+    <!-- EVIDENCE 2 -->
+    <div class="evidence-card" onclick="revealEvidence(this,'b')">
+      <div class="evidence-head">
+        <span class="ev-title">🏃‍♀️ After-School Running</span>
+        <span class="ev-hint">Tap to reveal</span>
+      </div>
+      <div class="evidence-body">
+        <img class="lesson-image" src="images/DP1b_evidence2.png" alt="After-school running evidence"
+             onerror="showMissing(this,'images/DP1b_evidence2.png')">
+        <p>She runs one mile on a treadmill after school in the same sneakers.</p>
+      </div>
+    </div>
+
+    <!-- EVIDENCE 3 -->
+    <div class="evidence-card" onclick="revealEvidence(this,'b')">
+      <div class="evidence-head">
+        <span class="ev-title">👟 Shoe Use</span>
+        <span class="ev-hint">Tap to reveal</span>
+      </div>
+      <div class="evidence-body">
+        <img class="lesson-image" src="images/DP1b_evidence3.png" alt="Shoe use evidence"
+             onerror="showMissing(this,'images/DP1b_evidence3.png')">
+        <p>She changes into sandals after running. Her sneakers show heavy wear.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card--discuss">
+    <div class="discuss-label">💬 Discuss together</div>
+    <p class="discuss-prompt">Based on the evidence we reviewed, what helps explain Ms. Allison's sneaker wear?</p>
+  </div>
+
+  <div class="btn-row btn-row--between">
+    <button class="btn btn--back" onclick="goTo('section-1')">← Back</button>
+    <div class="continue-wrap locked" data-path="b">
+      <button class="btn btn--primary" onclick="goTo('section-4')">Continue →</button>
+      <div class="continue-hint">Reveal all evidence to continue.</div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ============================================================
+     PAGE 4 — CONNECTION TO STORIES IN SCIENCE
+     (Here it's okay to use "you")
+     ============================================================ -->
+<section class="section" id="section-4">
+
+  <div class="card card--connection">
+    <h2 class="title-section">How This Connects to Stories in Science</h2>
+
+    <p class="narrative-text">
+      In Stories in Science lessons, <strong>you</strong> will enter a story, make choices,
+      review evidence, and explain your thinking.
+    </p>
+
+    <p class="narrative-text" style="margin-bottom:8px;">Evidence might come from:</p>
+    <div class="evidence-sources">
+      <span class="source-chip">📊 data</span>
+      <span class="source-chip">👀 observations</span>
+      <span class="source-chip">🧩 models</span>
+      <span class="source-chip">🖼️ images</span>
+      <span class="source-chip">🔁 patterns</span>
+      <span class="source-chip">📄 text</span>
+    </div>
+
+    <p class="narrative-text">
+      There may not always be one single correct answer. What matters is that you use evidence
+      from the lesson to support your decision or explanation.
+    </p>
+
+    <p class="narrative-text">
+      Today, we practiced this routine together: we did not just guess. We chose an evidence path,
+      reviewed information, and used evidence to explain our thinking.
+    </p>
+
+    <div class="closing-banner">
+      In Stories in Science, we use evidence to help explain what is happening.
+    </div>
+  </div>
+
+  <div class="btn-row btn-row--between">
+    <button class="btn btn--back" onclick="goBack()">← Back</button>
+    <button class="btn btn--primary" onclick="goTo('section-1')">↺ Run It Again</button>
+  </div>
+
+  <p class="teacher-note">Teacher orientation · 5–8 minutes · No grading · Project &amp; lead the class through together.</p>
+
+</section>
+
+</div><!-- /lesson-container -->
+
+
+<script>
+/* ============================================================
+   NAVIGATION  — show one page (.section) at a time
+   ============================================================ */
+var lastSection = 'section-1';
+
+function goTo(sectionId) {
+  // remember where we came from (for the Back button on Page 4)
+  var current = document.querySelector('.section.active');
+  if (current) lastSection = current.id;
+
+  document.querySelectorAll('.section').forEach(function (s) { s.classList.remove('active'); });
+  var target = document.getElementById(sectionId);
+  if (target) {
+    target.classList.add('active');
+    updateProgress(sectionId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// Back button on Page 4 returns to whichever evidence path was used
+function goBack() { goTo(lastSection === 'section-4' ? 'section-1' : lastSection); }
+
+/* ============================================================
+   PROGRESS BAR  — 4 simple steps
+   ============================================================ */
+function updateProgress(sectionId) {
+  var steps = { 'section-1': 25, 'section-2': 65, 'section-3': 65, 'section-4': 100 };
+  document.getElementById('progressBar').style.width = (steps[sectionId] || 0) + '%';
+}
+
+/* ============================================================
+   CLICK-TO-REVEAL EVIDENCE
+   - reveals a card
+   - fills a progress dot
+   - unlocks Continue once all 3 on that path are revealed
+   ============================================================ */
+function revealEvidence(card, path) {
+  if (card.classList.contains('revealed')) return;
+  card.classList.add('revealed');
+
+  // fill the next empty dot for this path
+  var dot = document.querySelector('.evidence-dot[data-path="' + path + '"]:not(.filled)');
+  if (dot) dot.classList.add('filled');
+
+  // count revealed cards on the active page
+  var page = card.closest('.section');
+  var total = page.querySelectorAll('.evidence-card').length;
+  var done  = page.querySelectorAll('.evidence-card.revealed').length;
+
+  if (done === total) {
+    var wrap = page.querySelector('.continue-wrap');
+    if (wrap) {
+      wrap.classList.remove('locked');
+      var hint = wrap.querySelector('.continue-hint');
+      if (hint) hint.style.display = 'none';
+    }
+  }
+}
+
+/* ============================================================
+   IMAGE PLACEHOLDER  — shows a friendly note if a file is missing.
+   Drop your real .png files in an /images folder using the exact
+   names referenced above and these notes disappear automatically.
+   ============================================================ */
+function showMissing(img, path) {
+  var note = document.createElement('div');
+  note.className = 'img-missing';
+  note.innerHTML = '🖼️ Image placeholder — add <code>' + path + '</code> to your images folder.';
+  img.replaceWith(note);
+}
+
+// set initial progress
+updateProgress('section-1');
+</script>
+
+</body>
+</html>
