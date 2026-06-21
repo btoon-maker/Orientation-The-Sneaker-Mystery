@@ -6,7 +6,7 @@
 <title>Stories in Science · Orientation: The Sneaker Mystery</title>
 
 <!-- ============================================================
-     FONT — same as your other SINS lessons (Open Sans)
+     FONT — same as your other Stories in Science lessons (Open Sans)
      ============================================================ -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
@@ -26,7 +26,7 @@
   --blue-light:  #f6f1fb;   /* soft lavender surface */
   --yellow:      #8349b7;   /* accent purple (decision) */
   --yellow-light:#f6f1fb;   /* soft lavender surface */
-  --orange:      #8349b7;   /* SINS badge (accent purple) */
+  --orange:      #8349b7;   /* brand badge (accent purple) */
   --black:       #000000;
   --white:       #FFFFFF;
   --gray-50:  #f8f9fa;
@@ -57,7 +57,7 @@ body {
 }
 
 /* ============================================================
-   FIXED HEADER BAR (SINS branding) + PROGRESS BAR
+   FIXED HEADER BAR (Stories in Science branding) + PROGRESS BAR
    ============================================================ */
 .resume-bar {
   position: fixed; top: 0; left: 0; right: 0;
@@ -69,8 +69,9 @@ body {
 .resume-bar .brand { display: flex; align-items: center; gap: 10px; }
 .resume-bar .sins-badge {
   background: var(--orange); color: #fff; font-weight: 900; font-size: 0.75rem;
-  border-radius: 50%; width: 36px; height: 36px; display: flex;
-  align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: 0.5px;
+  border-radius: 999px; min-height: 36px; padding: 0 14px; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 .resume-bar .brand-text { display: flex; flex-direction: column; }
 .brand-series { font-size: 0.65rem; font-weight: 600; letter-spacing: 1.5px;
@@ -223,15 +224,17 @@ body {
 .key-idea p { font-size: 1.05rem; color: var(--gray-800); line-height: 1.55; }
 
 /* ============================================================
-   PAGE 4 — TOOLS STRIP (brief preview of real lesson tools)
+   PAGE 4 — 3-STEP STORIES IN SCIENCE ROUTINE
    ============================================================ */
-.tools-strip { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-.tool-item { display: flex; align-items: flex-start; gap: 12px;
+.routine-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+.routine-step { display: flex; align-items: flex-start; gap: 12px;
   background: var(--blue-light); border-left: 3px solid var(--blue);
   border-radius: var(--radius); padding: 12px 16px;
   font-size: 1rem; color: var(--gray-700); line-height: 1.5; }
-.tool-item strong { color: var(--gray-800); }
-.tool-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1.3; }
+.routine-step strong { color: var(--gray-800); }
+.routine-number { background: var(--blue); color: var(--white); font-weight: 800;
+  border-radius: 50%; width: 28px; height: 28px; display: inline-flex;
+  align-items: center; justify-content: center; flex-shrink: 0; line-height: 1; }
 </style>
 </head>
 
@@ -242,9 +245,9 @@ body {
      ============================================================ -->
 <div class="resume-bar">
   <div class="brand">
-    <div class="sins-badge">SINS</div>
+    <div class="sins-badge">Stories in Science</div>
     <div class="brand-text">
-      <span class="brand-series">Stories in Science · Orientation</span>
+      <span class="brand-series">Orientation</span>
       <span class="brand-title">The Sneaker Mystery</span>
     </div>
   </div>
@@ -278,6 +281,7 @@ body {
 
     <p class="dialogue"><strong>Ms. Allison</strong> says, "Whoa… our shoes look really different."</p>
     <p class="dialogue"><strong>Mrs. Brown</strong> says, "They really do."</p>
+    <p class="dialogue"><strong>Mrs. Brown</strong> says, "That surprises me because I teach PE all day."</p>
 
     <p class="narrative-text">
       Lyra brings the mystery back to class. Your teacher says:
@@ -450,14 +454,20 @@ body {
       you think is happening.
     </p>
 
-    <p class="narrative-text" style="margin-bottom:8px;">Evidence might come from:</p>
-    <div class="evidence-sources">
-      <span class="source-chip">data</span>
-      <span class="source-chip">observations</span>
-      <span class="source-chip">models</span>
-      <span class="source-chip">images</span>
-      <span class="source-chip">patterns</span>
-      <span class="source-chip">text</span>
+    <p class="narrative-text" style="margin-bottom:10px;">In each lesson, we will use the same routine:</p>
+    <div class="routine-list">
+      <div class="routine-step">
+        <span class="routine-number">1</span>
+        <span><strong>Choose an evidence path.</strong> Decide where the investigation should start.</span>
+      </div>
+      <div class="routine-step">
+        <span class="routine-number">2</span>
+        <span><strong>Collect evidence.</strong> Evidence might come from data, observations, models, images, patterns, or text.</span>
+      </div>
+      <div class="routine-step">
+        <span class="routine-number">3</span>
+        <span><strong>Write your thinking.</strong> Explain what you think is happening using evidence.</span>
+      </div>
     </div>
 
     <!-- The goal, set off so students can spot it -->
@@ -465,23 +475,6 @@ body {
       <span class="key-idea-label">💡 Key idea</span>
       <p>The goal is not just to choose. The goal is to
          <strong>explain your choice with evidence</strong>.</p>
-    </div>
-
-    <!-- Concise tool preview -->
-    <p class="narrative-text" style="margin-bottom:10px;">You will also use simple tools:</p>
-    <div class="tools-strip">
-      <div class="tool-item">
-        <span class="tool-icon">📓</span>
-        <span><strong>Field Journal</strong> — explain your thinking.</span>
-      </div>
-      <div class="tool-item">
-        <span class="tool-icon">📖</span>
-        <span><strong>Glossary</strong> — check science words.</span>
-      </div>
-      <div class="tool-item">
-        <span class="tool-icon">🧪</span>
-        <span><strong>Interactives</strong> — explore models, simulations, or evidence.</span>
-      </div>
     </div>
 
     <div class="closing-banner">
@@ -494,7 +487,7 @@ body {
     <button class="btn btn--primary" onclick="goTo('section-1')">↺ Run It Again</button>
   </div>
 
-  <p class="teacher-note">© 2026 Brooke Toon. All rights reserved. This lesson is part of the Stories in Science (SINS) Framework developed by the author. Generative AI tools were used to support the development of this instructional material. This content may not be reproduced, distributed, modified, or used for commercial purposes without permission.</p>
+  <p class="teacher-note">© 2026 Brooke Toon. All rights reserved. This lesson is part of the Stories in Science Framework developed by the author. Generative AI tools were used to support the development of this instructional material. This content may not be reproduced, distributed, modified, or used for commercial purposes without permission.</p>
 
 </section>
 
