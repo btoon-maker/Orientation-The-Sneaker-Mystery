@@ -200,6 +200,19 @@ body {
   color: var(--blue); margin-bottom: 8px; font-size: 1rem;
   text-transform: uppercase; letter-spacing: 0.04em; }
 .discuss-prompt { font-size: 1.25rem; font-weight: 700; color: var(--gray-800); line-height: 1.5; }
+/* Claim frame — sentence stem that closes the loop from evidence to a claim */
+.claim-frame { margin-top: 14px; font-size: 1.05rem; color: var(--gray-700);
+  background: var(--white); border: 1px dashed var(--blue); border-radius: 8px; padding: 12px 14px; }
+.claim-frame strong { color: var(--blue); font-style: italic; }
+
+/* Fading scaffold — appears inside each clue when revealed.
+   Strong model on clue 1, shorter nudge on 2, tiny stem on 3. */
+.scaffold { margin-top: 12px; padding: 10px 14px; border-left: 3px solid var(--green);
+  background: var(--green-light); border-radius: 8px; color: var(--gray-700); line-height: 1.5; }
+.scaffold strong { color: var(--green-dark); }
+.scaffold--model { font-size: 1rem; font-style: italic; }
+.scaffold--we    { font-size: 0.92rem; }
+.scaffold--you   { font-size: 0.88rem; color: var(--gray-600); }
 
 /* ============================================================
    CONNECTION PAGE (Page 4)
@@ -277,9 +290,6 @@ body {
        They said they bought the <strong>same</strong> kind of
       sneakers on the <strong>same</strong> day at the beginning of the school year, but now the shoes look <i>different.</i> One pair looks much more worn than the other.
     </p>
-  <p class="narrative-text">
-      One pair looks much more worn than the other.
-    </p>
 
     <!-- IMAGE: hallway opening. Swap file at images/opening_hallways.png -->
     <img class="lesson-image" src="images/opening_hallways.png" alt="Two teachers comparing sneakers in the hallway"
@@ -338,6 +348,7 @@ body {
         <img class="lesson-image" src="images/DP1a_evidence1.png" alt="PE movement evidence"
              onerror="showMissing(this,'images/DP1a_evidence1.png')">
         <p>Mrs. Brown demonstrates warm-ups and walks around the gym and playground.</p>
+        <div class="scaffold scaffold--model"><strong>Your teacher thinks aloud:</strong> "Let me show you how I use evidence. This clue says Mrs. Brown moves a lot at PE, warm-ups, walking the gym, and the playground, so I start to wonder if all that moving wears her shoes down faster. I'm not sure yet, so I'll hold that idea and keep checking the other clues. See how I pointed to the evidence instead of guessing?"</div>
       </div>
     </div>
 
@@ -351,6 +362,7 @@ body {
         <img class="lesson-image" src="images/DP1a_evidence2.png" alt="Teaching routine evidence"
              onerror="showMissing(this,'images/DP1a_evidence2.png')">
         <p>She sometimes stands and gives directions during class.</p>
+        <div class="scaffold scaffold--we"><strong>Your teacher asks:</strong> "What does this clue tell us? Let's work it out together."</div>
       </div>
     </div>
 
@@ -364,6 +376,7 @@ body {
         <img class="lesson-image" src="images/DP1a_evidence3.png" alt="Shoe use evidence"
              onerror="showMissing(this,'images/DP1a_evidence3.png')">
         <p>She changes shoes after school. Her sneakers show some wear, but nothing extreme.</p>
+        <div class="scaffold scaffold--you"><strong>Your teacher asks:</strong> "Your turn, what does this clue tell you? Try the stem: 'This clue tells me ___.'"</div>
       </div>
     </div>
   </div>
@@ -372,6 +385,7 @@ body {
   <div class="card card--discuss">
     <div class="discuss-label">💬 Discuss together</div>
     <p class="discuss-prompt">Based on the evidence we collected, what helps explain Mrs. Brown’s sneaker wear?</p>
+    <p class="claim-frame">Make a claim: <strong>"Our claim is ___ because the evidence shows ___."</strong></p>
   </div>
 
   <div class="btn-row btn-row--between">
@@ -402,6 +416,7 @@ body {
         <img class="lesson-image" src="images/DP1b_evidence1.png" alt="School movement evidence"
              onerror="showMissing(this,'images/DP1b_evidence1.png')">
         <p>Ms. Allison walks around the classroom and during transitions and duty.</p>
+        <div class="scaffold scaffold--model"><strong>Your teacher thinks aloud:</strong> "Let me show you how I use evidence. This clue says Ms. Allison walks a lot at school, during class, transitions, and duty, so I start to wonder if her school day adds wear to her shoes. I'm not sure yet, so I'll hold that idea and keep checking the other clues. See how I pointed to the evidence instead of guessing?"</div>
       </div>
     </div>
 
@@ -415,6 +430,7 @@ body {
         <img class="lesson-image" src="images/DP1b_evidence2.png" alt="After-school running evidence"
              onerror="showMissing(this,'images/DP1b_evidence2.png')">
         <p>She runs one mile on a treadmill after school in the same sneakers.</p>
+        <div class="scaffold scaffold--we"><strong>Your teacher asks:</strong> "What does this clue tell us? Let's work it out together."</div>
       </div>
     </div>
 
@@ -428,6 +444,7 @@ body {
         <img class="lesson-image" src="images/DP1b_evidence3.png" alt="Shoe use evidence"
              onerror="showMissing(this,'images/DP1b_evidence3.png')">
         <p>She changes into sandals after running. Her sneakers show heavy wear.</p>
+        <div class="scaffold scaffold--you"><strong>Your teacher asks:</strong> "Your turn, what does this clue tell you? Try the stem: 'This clue tells me ___.'"</div>
       </div>
     </div>
   </div>
@@ -435,6 +452,7 @@ body {
   <div class="card card--discuss">
     <div class="discuss-label">💬 Discuss together</div>
     <p class="discuss-prompt">Based on the evidence we collected, what helps explain Ms. Allison’s sneaker wear?</p>
+    <p class="claim-frame">Make a claim: <strong>"Our claim is ___ because the evidence shows ___."</strong></p>
   </div>
 
   <div class="btn-row btn-row--between">
