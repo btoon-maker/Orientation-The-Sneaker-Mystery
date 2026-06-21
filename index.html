@@ -178,14 +178,6 @@ body {
 /* ============================================================
    CLICK-TO-REVEAL EVIDENCE CARDS
    ============================================================ */
-.evidence-progress { display: flex; align-items: center; gap: 8px; margin-bottom: 18px;
-  font-size: 0.8rem; font-weight: 700; color: var(--gray-400);
-  text-transform: uppercase; letter-spacing: 0.06em; }
-.evidence-dots { display: flex; gap: 6px; }
-.evidence-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gray-200);
-  transition: background 0.3s; }
-.evidence-dot.filled { background: var(--green); }
-
 .evidence-card { border: 2px solid var(--gray-200); border-radius: var(--radius);
   margin-bottom: 14px; overflow: hidden; background: var(--white);
   cursor: pointer; transition: all 0.2s ease; }
@@ -208,11 +200,6 @@ body {
   text-transform: uppercase; letter-spacing: 0.04em; }
 .discuss-prompt { font-size: 1.25rem; font-weight: 700; color: var(--gray-800); line-height: 1.5; }
 
-/* Continue button is hidden until all evidence is revealed */
-.continue-wrap { margin-top: 8px; }
-.continue-wrap.locked .btn--primary { opacity: 0.45; pointer-events: none; }
-.continue-hint { font-size: 0.85rem; color: var(--gray-400); font-weight: 600; margin-top: 8px; }
-
 /* ============================================================
    CONNECTION PAGE (Page 4)
    ============================================================ */
@@ -234,15 +221,6 @@ body {
 .key-idea-label { display: inline-block; font-weight: 800; font-size: 0.78rem;
   letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-dark); margin-bottom: 6px; }
 .key-idea p { font-size: 1.05rem; color: var(--gray-800); line-height: 1.55; }
-
-.routine-intro { font-size: 1.05rem; color: var(--gray-800); margin-bottom: 12px; }
-.routine-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-.routine-step { display: flex; align-items: center; gap: 14px; background: var(--white);
-  border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 12px 16px;
-  font-size: 1.05rem; color: var(--gray-800); box-shadow: var(--shadow-sm); }
-.routine-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
-  background: var(--green); color: var(--white); font-weight: 800; font-size: 1rem;
-  display: flex; align-items: center; justify-content: center; }
 
 /* ============================================================
    PAGE 4 — TOOLS STRIP (brief preview of real lesson tools)
@@ -284,25 +262,25 @@ body {
 
   <div class="card card--hero">
     <h1>The Sneaker Mystery</h1>
-    <p>Before we make a guess, let's look for evidence together.</p>
+    <p>Today, we are the investigators. Before we make a guess, let's look for evidence together.</p>
   </div>
 
   <div class="card card--narrative">
     <p class="narrative-text">
-      A student notices <strong>Mrs. Brown</strong>, the PE teacher, and <strong>Ms. Allison</strong>,
-      the 4th grade teacher, comparing their sneakers in the hallway. They bought the same kind of
-      sneakers on the same day, but now the shoes look different. One pair looks much more worn than the other.
+      Lyra notices that <strong>Mrs. Brown</strong>, the PE teacher, and <strong>Ms. Allison</strong>,
+      the 4th-grade teacher, were comparing their sneakers in the hallway. They said they bought the same kind of
+      sneakers on the same day at the beginning of the school year, but now the shoes look different. One pair looks much more worn than the other.
     </p>
 
     <!-- IMAGE: hallway opening. Swap file at images/opening_hallways.png -->
     <img class="lesson-image" src="images/opening_hallways.png" alt="Two teachers comparing sneakers in the hallway"
          onerror="showMissing(this,'images/opening_hallways.png')">
 
-    <p class="dialogue">Ms. Allison says, "Whoa… our shoes look really different."</p>
-    <p class="dialogue">Mrs. Brown says, "They really do."</p>
+    <p class="dialogue"><strong>Ms. Allison</strong> says, "Whoa… our shoes look really different."</p>
+    <p class="dialogue"><strong>Mrs. Brown</strong> says, "They really do."</p>
 
     <p class="narrative-text">
-      The student brings the mystery back to class. Their teacher says:
+      Lyra brings the mystery back to class. Your teacher says:
     </p>
     <p class="dialogue">"Before we make a guess, let's look for evidence."</p>
 
@@ -338,17 +316,7 @@ body {
 
   <div class="card card--narrative">
     <h2 class="title-section">Evidence Path: Mrs. Brown</h2>
-    <span class="reminder-line">We chose to investigate Mrs. Brown's evidence first.</span>
-
-    <!-- Reveal-progress dots -->
-    <div class="evidence-progress">
-      <span>Evidence revealed</span>
-      <span class="evidence-dots">
-        <span class="evidence-dot" data-path="a"></span>
-        <span class="evidence-dot" data-path="a"></span>
-        <span class="evidence-dot" data-path="a"></span>
-      </span>
-    </div>
+    <span class="reminder-line">Our class chose Mrs. Brown's path. Now let's collect the evidence.</span>
 
     <!-- EVIDENCE 1 -->
     <div class="evidence-card" onclick="revealEvidence(this,'a')">
@@ -398,10 +366,7 @@ body {
 
   <div class="btn-row btn-row--between">
     <button class="btn btn--back" onclick="goTo('section-1')">← Back</button>
-    <div class="continue-wrap locked" data-path="a">
-      <button class="btn btn--primary" onclick="goTo('section-4')">Continue →</button>
-      <div class="continue-hint">Reveal all evidence to continue.</div>
-    </div>
+    <button class="btn btn--primary" onclick="goTo('section-4')">Continue →</button>
   </div>
 
 </section>
@@ -415,16 +380,7 @@ body {
 
   <div class="card card--narrative">
     <h2 class="title-section">Evidence Path: Ms. Allison</h2>
-    <span class="reminder-line">We chose to investigate Ms. Allison's evidence first.</span>
-
-    <div class="evidence-progress">
-      <span>Evidence revealed</span>
-      <span class="evidence-dots">
-        <span class="evidence-dot" data-path="b"></span>
-        <span class="evidence-dot" data-path="b"></span>
-        <span class="evidence-dot" data-path="b"></span>
-      </span>
-    </div>
+    <span class="reminder-line">Our class chose Ms. Allison's path. Now let's collect the evidence.</span>
 
     <!-- EVIDENCE 1 -->
     <div class="evidence-card" onclick="revealEvidence(this,'b')">
@@ -473,10 +429,7 @@ body {
 
   <div class="btn-row btn-row--between">
     <button class="btn btn--back" onclick="goTo('section-1')">← Back</button>
-    <div class="continue-wrap locked" data-path="b">
-      <button class="btn btn--primary" onclick="goTo('section-4')">Continue →</button>
-      <div class="continue-hint">Reveal all evidence to continue.</div>
-    </div>
+    <button class="btn btn--primary" onclick="goTo('section-4')">Continue →</button>
   </div>
 
 </section>
@@ -492,63 +445,47 @@ body {
     <h2 class="title-section">How This Connects to Stories in Science</h2>
 
     <p class="narrative-text">
-      In Stories in Science lessons, <strong>you</strong> will enter a story, make choices,
-      review evidence, and explain your thinking.
+      Today was a practice case. In the full Stories in Science lessons, <strong>you</strong> will
+      become part of a science mission. You will make choices, collect evidence, and explain what
+      you think is happening.
     </p>
 
     <p class="narrative-text" style="margin-bottom:8px;">Evidence might come from:</p>
     <div class="evidence-sources">
-      <span class="source-chip">data</span>
-      <span class="source-chip">observations</span>
-      <span class="source-chip">models</span>
-      <span class="source-chip">images</span>
-      <span class="source-chip">patterns</span>
-      <span class="source-chip">text</span>
+      <span class="source-chip">📊 data</span>
+      <span class="source-chip">👀 observations</span>
+      <span class="source-chip">🧩 models</span>
+      <span class="source-chip">🖼️ images</span>
+      <span class="source-chip">🔁 patterns</span>
+      <span class="source-chip">📄 text</span>
     </div>
 
-    <!-- Key idea, set off so students can spot it -->
+    <!-- The goal, set off so students can spot it -->
     <div class="key-idea">
       <span class="key-idea-label">💡 Key idea</span>
-      <p>There is not always one single correct answer. What matters is that you use
-         <strong>evidence from the lesson</strong> to support your decision or explanation.</p>
+      <p>The goal is not just to choose. The goal is to
+         <strong>explain your choice with evidence</strong>.</p>
     </div>
 
-    <!-- The routine made concrete: 3 clear, repeatable steps -->
-    <p class="routine-intro"><strong>Today, we did not just guess.</strong> We practiced the routine together:</p>
-    <div class="routine-steps">
-      <div class="routine-step">
-        <span class="routine-num">1</span>
-        <span>We <strong>chose</strong> an evidence path.</span>
-      </div>
-      <div class="routine-step">
-        <span class="routine-num">2</span>
-        <span>We <strong>reviewed</strong> the information.</span>
-      </div>
-      <div class="routine-step">
-        <span class="routine-num">3</span>
-        <span>We used <strong>evidence</strong> to explain our thinking.</span>
-      </div>
-    </div>
-
-    <!-- Brief look at the tools students use in the real lessons -->
-    <p class="narrative-text" style="margin-bottom:10px;">In these lessons, you will also use a few simple tools:</p>
+    <!-- Concise tool preview -->
+    <p class="narrative-text" style="margin-bottom:10px;">You will also use simple tools:</p>
     <div class="tools-strip">
       <div class="tool-item">
         <span class="tool-icon">📓</span>
-        <span><strong>Field Journal</strong> — type your thinking and explain it with evidence.</span>
+        <span><strong>Field Journal</strong> — explain your thinking.</span>
       </div>
       <div class="tool-item">
         <span class="tool-icon">📖</span>
-        <span><strong>Glossary</strong> — look up any word, anytime.</span>
+        <span><strong>Glossary</strong> — check science words.</span>
       </div>
       <div class="tool-item">
         <span class="tool-icon">🧪</span>
-        <span><strong>Interactives</strong> — explore models, simulations, and sliders. These change from lesson to lesson.</span>
+        <span><strong>Interactives</strong> — explore models, simulations, or evidence.</span>
       </div>
     </div>
 
     <div class="closing-banner">
-      In Stories in Science, we use evidence to help explain what is happening.
+      In Stories in Science, we use evidence to explain what is happening.
     </div>
   </div>
 
@@ -557,7 +494,7 @@ body {
     <button class="btn btn--primary" onclick="goTo('section-1')">↺ Run It Again</button>
   </div>
 
-  <p class="teacher-note">Teacher orientation · 5–8 minutes · No grading · Project &amp; lead the class through together.</p>
+  <p class="teacher-note">© 2026 Brooke Toon. All rights reserved. This lesson is part of the Stories in Science (SINS) Framework developed by the author. Generative AI tools were used to support the development of this instructional material. This content may not be reproduced, distributed, modified, or used for commercial purposes without permission.</p>
 
 </section>
 
@@ -604,24 +541,6 @@ function updateProgress(sectionId) {
 function revealEvidence(card, path) {
   if (card.classList.contains('revealed')) return;
   card.classList.add('revealed');
-
-  // fill the next empty dot for this path
-  var dot = document.querySelector('.evidence-dot[data-path="' + path + '"]:not(.filled)');
-  if (dot) dot.classList.add('filled');
-
-  // count revealed cards on the active page
-  var page = card.closest('.section');
-  var total = page.querySelectorAll('.evidence-card').length;
-  var done  = page.querySelectorAll('.evidence-card.revealed').length;
-
-  if (done === total) {
-    var wrap = page.querySelector('.continue-wrap');
-    if (wrap) {
-      wrap.classList.remove('locked');
-      var hint = wrap.querySelector('.continue-hint');
-      if (hint) hint.style.display = 'none';
-    }
-  }
 }
 
 /* ============================================================
